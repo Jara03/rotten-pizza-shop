@@ -26,13 +26,8 @@ services:
   db:
     image: mariadb
     container_name: rps-db
-    environment:
-      - MARIADB_ROOT_PASSWORD=azerty
-      - MARIADB_USER=rps
-      - MARIADB_DATABASE=rps
-      - MARIADB_PASSWORD=azerty
-    ports:
-      - 3306:3306
+    env_file:
+      - .env
     networks:
       - rps
   adminer:
