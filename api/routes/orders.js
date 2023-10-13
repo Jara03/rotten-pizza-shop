@@ -8,8 +8,8 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-var mysql = require("mysql");
-var connection = mysql.createConnection({
+const mysql = require("mysql");
+const connection = mysql.createConnection({
   host: "db",
   user: "rps",
   password: "azerty",
@@ -118,14 +118,14 @@ router.patch("/:id", function (req, res) {
         connection.query(query3, (err, rows, fields) => {
           if (err) console.log(err);
 
-          let loyaltyPoints;
+          let loyaltyPoints = rows[0].loyaltyPoints;
 
           if (amount < 10) {
-             loyaltyPoints = rows[0].loyaltyPoints + 10;
+             loyaltyPoints += 10;
           }else if (amount > 20) {
-             loyaltyPoints = rows[0].loyaltyPoints + 30;
-          }else if (amount > 10) {
-             loyaltyPoints = rows[0].loyaltyPoints + 20;
+             loyaltyPoints += 30;
+          }else {
+             loyaltyPoints += 20;
           }
 
           const query4 = `UPDATE users SET loyaltyPoints=${loyaltyPoints} WHERE id = ${user_id}`;
