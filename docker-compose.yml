@@ -9,7 +9,7 @@ networks:
 
 services:
   api:
-    image: node
+    image: node:lts-alpine
     container_name: rps-api
     env_file:
       - .env
