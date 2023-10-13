@@ -118,12 +118,14 @@ router.patch("/:id", function (req, res) {
         connection.query(query3, (err, rows, fields) => {
           if (err) console.log(err);
 
+          let loyaltyPoints;
+
           if (amount < 10) {
-            let loyaltyPoints = rows[0].loyaltyPoints + 10;
-          } else if (amount > 10) {
-            let loyaltyPoints = rows[0].loyaltyPoints + 20;
-          } else if (amount > 20) {
-            let loyaltyPoints = rows[0].loyaltyPoints + 30;
+             loyaltyPoints = rows[0].loyaltyPoints + 10;
+          }else if (amount > 20) {
+             loyaltyPoints = rows[0].loyaltyPoints + 30;
+          }else if (amount > 10) {
+             loyaltyPoints = rows[0].loyaltyPoints + 20;
           }
 
           const query4 = `UPDATE users SET loyaltyPoints=${loyaltyPoints} WHERE id = ${user_id}`;
