@@ -39,7 +39,7 @@ services:
     image: adminer
     container_name: rps-adminer
     environment:
-      - ADMINER_DEFAULT_SERVER=mariadb
+      - ADMINER_DEFAULT_SERVER=rps-db
     ports:
       - 8181:8080
     networks:
